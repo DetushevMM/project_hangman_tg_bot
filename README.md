@@ -72,15 +72,7 @@ bot/
 Система (Ubuntu / WSL)
 
 - sudo apt update
-- sudo apt install -y \
-g++ \
-cmake \
-git \
-make \
-libssl-dev \
-zlib1g-dev \
-libcurl4-openssl-dev \
-libboost-all-dev
+- sudo apt install -y g++ cmake git make libssl-dev zlib1g-dev libcurl4-openssl-dev libboost-all-dev
 
 
 ---
@@ -88,11 +80,17 @@ libboost-all-dev
 Библиотека TgBot
 
 - git clone https://github.com/reo7sp/tgbot-cpp.git
+
 - cd tgbot-cpp
+
 - mkdir build && cd build
+
 - cmake ..
+
 - make -j$(nproc)
+
 - sudo make install
+
 - sudo ldconfig
 
 
@@ -101,8 +99,11 @@ libboost-all-dev
 ⚙️ Сборка проекта
 
 - mkdir build
+
 - cd build
+
 - cmake ..
+
 - make -j$(nproc)
 
 
