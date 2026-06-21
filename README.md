@@ -32,14 +32,10 @@ Telegram-бот для игры в «Виселицу», реализованн�
 game/hangman.hpp
 
 Отвечает за:
-
-хранение слова
-
-маску угадывания
-
-количество ошибок
-
-проверку победы/поражения
+- хранение слова
+- маску угадывания
+- количество ошибок
+- проверку победы/поражения
 
 
 
@@ -50,15 +46,10 @@ game/hangman.hpp
 word_generator/
 
 Функции:
-
-загрузка слов из файла
-
-фильтрация невалидных слов
-
-приведение к нижнему регистру
-
-случайный выбор слова (mt19937_64)
-
+- загрузка слов из файла
+- фильтрация невалидных слов
+- приведение к нижнему регистру
+- случайный выбор слова (mt19937_64)
 
 
 ---
@@ -68,15 +59,10 @@ word_generator/
 bot/
 
 Функции:
-
-обработка сообщений Telegram
-
-маршрутизация команд
-
-хранение состояния игр
-
-сохранение/загрузка state
-
+- обработка сообщений Telegram
+- маршрутизация команд
+- хранение состояния игр
+- сохранение/загрузка state
 
 
 ---
@@ -85,8 +71,8 @@ bot/
 
 Система (Ubuntu / WSL)
 
-sudo apt update
-sudo apt install -y \
+- sudo apt update
+- sudo apt install -y \
 g++ \
 cmake \
 git \
@@ -101,23 +87,23 @@ libboost-all-dev
 
 Библиотека TgBot
 
-git clone https://github.com/reo7sp/tgbot-cpp.git
-cd tgbot-cpp
-mkdir build && cd build
-cmake ..
-make -j$(nproc)
-sudo make install
-sudo ldconfig
+- git clone https://github.com/reo7sp/tgbot-cpp.git
+- cd tgbot-cpp
+- mkdir build && cd build
+- cmake ..
+- make -j$(nproc)
+- sudo make install
+- sudo ldconfig
 
 
 ---
 
 ⚙️ Сборка проекта
 
-mkdir build
-cd build
-cmake ..
-make -j$(nproc)
+- mkdir build
+- cd build
+- cmake ..
+- make -j$(nproc)
 
 
 ---
@@ -157,7 +143,7 @@ state.txt
 
 Файл состояния (создаётся автоматически):
 
-chat_id secret_word mask wrong_guesses
+chat_id - secret_word - mask - wrong_guesses
 
 
 ---
