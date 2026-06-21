@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/bot.dir/main.cpp.o CMakeFiles/bot.dir/bot/bot.cpp.o CMakeFiles/bot.dir/word_generator/word_generator.cpp.o -o bot  -lTgBot /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so /usr/lib/x86_64-linux-gnu/libcurl.so 

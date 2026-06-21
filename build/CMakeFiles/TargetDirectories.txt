@@ -1,0 +1,3 @@
+/home/igemon/Study_works/project_hangman_tg_bot/build/CMakeFiles/bot.dir
+/home/igemon/Study_works/project_hangman_tg_bot/build/CMakeFiles/edit_cache.dir
+/home/igemon/Study_works/project_hangman_tg_bot/build/CMakeFiles/rebuild_cache.dir

@@ -72,7 +72,7 @@ class HangmanGame {
 
   // Методы сериализации и десериализации
   // Позволяет вручную установить состяние маски при загрузке из файла
-  void SetCurrentGuesses(std::string guess) {
+  void SetCurrentGuess(std::string guess) {
     current_guess_ = std::move(guess);
   }
 

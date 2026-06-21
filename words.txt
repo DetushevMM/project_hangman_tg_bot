@@ -1,0 +1,7 @@
+apple
+banana
+orange
+computer
+programming
+hangman
+developer
