@@ -68,23 +68,40 @@
 project_hangman_tg_bot/
 
 ├── bot/
+
 │   ├── bot.hpp
+
 │   └── bot.cpp
+
 │
+
 ├── game/
+
 │   └── hangman.hpp
+
 │
 ├── word_generator/
+
 │   ├── word_generator.hpp
+
 │   └── word_generator.cpp
+
 │
+
 ├── build/
+
 │
+
 ├── main.cpp
+
 ├── CMakeLists.txt
+
 ├── token.txt
+
 ├── words.txt
+
 ├── state.txt
+
 └── README.md
 
 ---
@@ -201,11 +218,17 @@ state.txt
 После команды "/newgame":
 
  +---+
+ 
  |   |
+ 
      |
+     
      |
+     
      |
+     
      |
+     
 =========
 
 Слово:
@@ -216,11 +239,17 @@ _ _ _ _ _ _
 После нескольких неправильных попыток:
 
  +---+
+ 
  |   |
+ 
  O   |
+ 
 /|\  |
+
 /    |
+
      |
+     
 =========
 
 Слово:
