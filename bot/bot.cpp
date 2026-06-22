@@ -5,11 +5,73 @@
 #include <iostream>
 #include <filesystem>
 #include <cctype>
+#include <vector>
 
-// =======================
+namespace {
+
+std::string GetHangmanPicture(int wrong_guesses) {
+  static const std::vector<std::string> pictures = {
+    R"( +----+
+     |    |
+          |
+          |
+          |
+          |
+    =============)",
+
+    R"( +----+
+     |    |
+     O    |
+          |
+          |
+          |
+    =============)",
+
+    R"( +----+
+     |    |
+     O    |
+     |    |
+          |
+          |
+    =============)",
+
+    R"( +----+
+     |    |
+     O    |
+    /|    |
+          |
+          |
+    =============)",
+
+    R"( +----+
+     |    |
+     O    |
+    /|\   |
+          |
+          |
+    =============)",
+
+    R"( +----+
+     |    |
+     O    |
+    /|\   |
+    /     |
+          |
+    =============)",
+
+    R"( +----+
+     |    |
+     O    |
+    /|\   |
+    / \   |
+          |
+    =============)"
+    };
+    return pictures.at(wrong_guesses);
+  }
+} // namespace
+
 // Конструктор
-// =======================
-
 HangmanTgBot::HangmanTgBot(std::string token,
                            WordGenerator generator,
                            std::string state_path)
@@ -20,10 +82,7 @@ HangmanTgBot::HangmanTgBot(std::string token,
   RegisterHandlers();
 }
 
-// =======================
 // Регистрация обработчиков
-// =======================
-
 void HangmanTgBot::RegisterHandlers() {
   // /start
   bot_.getEvents().onCommand("start", [this](TgBot::Message::Ptr message) {
@@ -69,10 +128,7 @@ void HangmanTgBot::RegisterHandlers() {
   });
 }
 
-// =======================
 // Обработка сообщений
-// =======================
-
 void HangmanTgBot::HandleMessage(TgBot::Message::Ptr message) {
   int64_t chat_id = message->chat->id;
   std::string text = message->text;
@@ -88,7 +144,7 @@ void HangmanTgBot::HandleMessage(TgBot::Message::Ptr message) {
   }
 
   if (text.size() != 1 || !std::isalpha(static_cast<unsigned char>(text[0]))) {
-    bot_.getApi().sendMessage(chat_id, "Введите одну букву.");
+    bot_.getApi().sendMessage(chat_id, "Введите одну букву латиницей.");
     return;
   }
 
@@ -115,23 +171,23 @@ void HangmanTgBot::HandleMessage(TgBot::Message::Ptr message) {
   bot_.getApi().sendMessage(chat_id, response);
 }
 
-// =======================
 // Формат состояния игры
-// =======================
-
-std::string HangmanTgBot::FormatGameStatus(
-    const HangmanGame& game) const {
+std::string HangmanTgBot::FormatGameStatus(const HangmanGame& game) const {
   std::stringstream ss;
-  ss << "Слово: " << game.GetGuess() << "\n";
+  ss << GetHangmanPicture(game.GetWrongGuesses()) << "\n\n";
+  ss << "Слово: ";
+  for (char c : game.GetGuess()) {
+    ss << c << ' ';
+  }
+  ss << "\n";
   ss << "Ошибки: " << game.GetWrongGuesses()
-     << " / " << HangmanGame::kMaxWrongGuesses;
+     << " из "
+     << HangmanGame::kMaxWrongGuesses;
+
   return ss.str();
 }
 
-// =======================
 // Сохранение состояния
-// =======================
-
 void HangmanTgBot::SaveState() const {
   std::string tmp = state_path_ + ".tmp";
   std::ofstream file(tmp);
@@ -158,10 +214,7 @@ void HangmanTgBot::SaveState() const {
   }
 }
 
-// =======================
 // Загрузка состояния
-// =======================
-
 void HangmanTgBot::LoadState() {
   std::ifstream file(state_path_);
   if (!file.is_open()) {
@@ -189,10 +242,7 @@ void HangmanTgBot::LoadState() {
   }
 }
 
-// =======================
 // Запуск бота
-// =======================
-
 void HangmanTgBot::Run() {
   bot_.getApi().deleteWebhook();
 
